@@ -7,7 +7,25 @@
 </head>
 <body>
     <script>
-        
+        // Create computer variable that will output rock, paper, or scissors using a function to randomly generate its output.
+        const choices = ['Rock', 'Paper', 'Scissors'];
+        const computerSelection = getComputerChoice();
+        console.log(computerSelection);
+
+        function getComputerChoice() {
+            const computerSelection = choices[Math.floor(Math.random() * choices.length)];
+
+            return computerSelection;
+        }
+
+        // Create a variable to capture user input 
+        const playerSelection = prompt('What is your choice?', '');
+        console.log(playerSelection);
+
+        // lowercase the user input value and compare to computer output value
+
+
+        // use an if statement to compare the values and return who the winner is
     </script>
 </body>
 </html>
