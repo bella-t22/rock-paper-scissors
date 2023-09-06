@@ -8,24 +8,52 @@
 <body>
     <script>
         // Create computer variable that will output rock, paper, or scissors using a function to randomly generate its output.
-        const choices = ['Rock', 'Paper', 'Scissors'];
-        const computerSelection = getComputerChoice();
-        console.log(computerSelection);
 
-        function getComputerChoice() {
-            const computerSelection = choices[Math.floor(Math.random() * choices.length)];
+        // create a playable round of the game
+        // call getComputerChoice() to attain the computer value and compare it to the user value
+        // establish which values are greater than the other and return the winner
+        function playRound() {
+             // Prompt the user to input a value and capture it
+            const playerSelection = prompt('What is your choice?', '');
 
-            return computerSelection;
+            // lowercase the user value
+            const userValue = playerSelection.toLowerCase();
+
+            // call getComputerChoice() to attain computer value and print
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerSelection = getComputerChoice();
+            function getComputerChoice() { 
+                const choice = choices[Math.floor(Math.random() * choices.length)];
+                return choice;
+        };
+
+            // Compare the user value to the computer selection and print the winner/loser
+            if (computerSelection === userValue) {
+                return 'Its a tie! Try again.'
+            } else if (computerSelection === 'rock' && userValue ===  'paper') {
+                return 'You win! Paper beats rock!';
+            } else if (computerSelection === 'paper' && userValue === 'rock') {
+                return 'You lose. Paper beats rock.';
+            } else if (computerSelection === 'scissors' && userValue === 'rock') {
+                return 'You win! Rock beats scissors!';
+            } else if (computerSelection === 'rock' && userValue === 'scissors') {
+                return 'You lose. Scissors beats rock.';
+            } else if (computerSelection === 'paper' && userValue === 'scissors') {
+                return 'You win! Scissors beats paper!';
+            } else if (computerSelection === 'scissors' && userValue === 'paper') {
+                return 'You lose. Scissors beats paper';
+            } else {
+                return 'Uh oh, something went wrong! Try again.'
+            };
+
         }
-
-        // Create a variable to capture user input 
-        const playerSelection = prompt('What is your choice?', '');
-        console.log(playerSelection);
-
-        // lowercase the user input value and compare to computer output value
 
 
         // use an if statement to compare the values and return who the winner is
+        // write a function called game() to keep score for five rounds and return the winner/loser at the end
+
+        
+
     </script>
 </body>
 </html>
