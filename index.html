@@ -7,43 +7,81 @@
 </head>
 <body>
     <script>
-        // Create computer variable that will output rock, paper, or scissors using a function to randomly generate its output.
+        // create variables to keep track of the score
+        let computerScore = 0;
+        let userScore = 0;
+
+        game();
+
+        // create function to play five rounds of the game, keep score, and print the winner at the end
+        function game() {
+            playRound();
+            playRound();
+            playRound();
+            playRound();
+            playRound();
+
+            if (userScore > computerScore) {
+                console.log(`Yay! You Won! The score is ${userScore} vs ${computerScore}.`);
+                return;
+            } else if (userScore === computerScore) {
+                console.log(`It is a tie! The score is ${userScore} vs ${computerScore}.`);
+                return;
+            } else {
+                console.log(`Bummer, you lost! The score is ${userScore} vs ${computerScore}.`);
+                return;
+            }
+        }
 
         // create a playable round of the game
-        // call getComputerChoice() to attain the computer value and compare it to the user value
-        // establish which values are greater than the other and return the winner
         function playRound() {
              // Prompt the user to input a value and capture it
             const playerSelection = prompt('What is your choice?', '');
 
             // lowercase the user value
             const userValue = playerSelection.toLowerCase();
+            console.log(`You chose ${userValue}`);
 
             // call getComputerChoice() to attain computer value and print
             const choices = ['rock', 'paper', 'scissors'];
             const computerSelection = getComputerChoice();
             function getComputerChoice() { 
                 const choice = choices[Math.floor(Math.random() * choices.length)];
+                console.log(`The computer chose ${choice}`);
                 return choice;
         };
 
             // Compare the user value to the computer selection and print the winner/loser
             if (computerSelection === userValue) {
-                return 'Its a tie! Try again.'
+                console.log(`Its a tie! Try again. The Score is ${userScore} vs ${computerScore}.`);
+                return;
             } else if (computerSelection === 'rock' && userValue ===  'paper') {
-                return 'You win! Paper beats rock!';
+                userScore += 1;
+                console.log(`You win! Paper beats rock! The score is ${userScore} vs ${computerScore}`);
+                return;
             } else if (computerSelection === 'paper' && userValue === 'rock') {
-                return 'You lose. Paper beats rock.';
+                computerScore += 1;
+                console.log(`You lose. Paper beats rock. The score is ${userScore} vs ${computerScore}`);
+                return;
             } else if (computerSelection === 'scissors' && userValue === 'rock') {
-                return 'You win! Rock beats scissors!';
+                userScore += 1;
+                console.log(`You win! Rock beats scissors! The score is ${userScore} vs ${computerScore}`);
+                return;
             } else if (computerSelection === 'rock' && userValue === 'scissors') {
-                return 'You lose. Scissors beats rock.';
+                computerScore += 1;
+                console.log(`You lose. Scissors beats rock. The score is ${userScore} vs ${computerScore}`);
+                return;
             } else if (computerSelection === 'paper' && userValue === 'scissors') {
-                return 'You win! Scissors beats paper!';
+                userScore += 1;
+                console.log(`You win! Scissors beats paper! The score is ${userScore} vs ${computerScore}`);
+                return;
             } else if (computerSelection === 'scissors' && userValue === 'paper') {
-                return 'You lose. Scissors beats paper';
+                computerScore += 1;
+                console.log(`You lose. Scissors beats paper The score is ${userScore} vs ${computerScore}`);
+                return;
             } else {
-                return 'Uh oh, something went wrong! Try again.'
+                console.log('Uh oh, something went wrong! Try again.');
+                return;
             };
 
         }
