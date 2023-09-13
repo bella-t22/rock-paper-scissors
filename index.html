@@ -6,90 +6,87 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Let's Play!</h1>
+
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+
     <script>
         // create variables to keep track of the score
         let computerScore = 0;
         let userScore = 0;
 
-        game();
+        const heading = document.querySelector('h1');
+        const div = document.createElement('div');
+        heading.append(div);
 
-        // create function to play five rounds of the game, keep score, and print the winner at the end
-        function game() {
-            playRound();
-            playRound();
-            playRound();
-            playRound();
-            playRound();
+        const rock = document.querySelector('#rock');
+        const paper = document.querySelector('#paper');
+        const scissors = document.querySelector('#scissors');
 
-            if (userScore > computerScore) {
-                console.log(`Yay! You Won! The score is ${userScore} vs ${computerScore}.`);
-                return;
-            } else if (userScore === computerScore) {
-                console.log(`It is a tie! The score is ${userScore} vs ${computerScore}.`);
-                return;
-            } else {
-                console.log(`Bummer, you lost! The score is ${userScore} vs ${computerScore}.`);
-                return;
-            }
-        }
+        rock.addEventListener('click', function(rock) {
+            playRound('rock');
+        });
+        paper.addEventListener('click', function(paper) {
+            playRound('paper');
+        });
+        scissors.addEventListener('click', function(scissors) {
+            playRound('scissors');
+        });
+
+        // while (computerScore !== 5 || userScore !== 5) {
+        //     playRound();
+
+        //     
+        // }
 
         // create a playable round of the game
-        function playRound() {
-             // Prompt the user to input a value and capture it
-            const playerSelection = prompt('What is your choice?', '');
+        function playRound(playerSelection) {
 
-            // lowercase the user value
-            const userValue = playerSelection.toLowerCase();
-            console.log(`You chose ${userValue}`);
+            if (userScore === 5) {
+                div.innerText = `Yay! You Won! The score is ${userScore} vs ${computerScore}.`;
+                return;
+            } else if (computerScore === 5) {
+                div.innerText = `Bummer, you lost! The score is ${userScore} vs ${computerScore}.`;
+                return;
+            }
 
             // call getComputerChoice() to attain computer value and print
             const choices = ['rock', 'paper', 'scissors'];
             const computerSelection = getComputerChoice();
+
             function getComputerChoice() { 
                 const choice = choices[Math.floor(Math.random() * choices.length)];
-                console.log(`The computer chose ${choice}`);
                 return choice;
-        };
+            };
 
             // Compare the user value to the computer selection and print the winner/loser
-            if (computerSelection === userValue) {
-                console.log(`Its a tie! Try again. The Score is ${userScore} vs ${computerScore}.`);
-                return;
-            } else if (computerSelection === 'rock' && userValue ===  'paper') {
+            if (computerSelection === playerSelection) {
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nIts a tie! Try again. The Score is ${userScore} vs ${computerScore}.`;
+            } else if (computerSelection === 'rock' && playerSelection ===  'paper') {
                 userScore += 1;
-                console.log(`You win! Paper beats rock! The score is ${userScore} vs ${computerScore}`);
-                return;
-            } else if (computerSelection === 'paper' && userValue === 'rock') {
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nYou win! Paper beats rock! The score is ${userScore} vs ${computerScore}`;
+            } else if (computerSelection === 'paper' && playerSelection === 'rock') {
                 computerScore += 1;
-                console.log(`You lose. Paper beats rock. The score is ${userScore} vs ${computerScore}`);
-                return;
-            } else if (computerSelection === 'scissors' && userValue === 'rock') {
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nYou lose. Paper beats rock. The score is ${userScore} vs ${computerScore}`;
+            } else if (computerSelection === 'scissors' && playerSelection === 'rock') {
                 userScore += 1;
-                console.log(`You win! Rock beats scissors! The score is ${userScore} vs ${computerScore}`);
-                return;
-            } else if (computerSelection === 'rock' && userValue === 'scissors') {
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nYou win! Rock beats scissors! The score is ${userScore} vs ${computerScore}`;
+            } else if (computerSelection === 'rock' && playerSelection === 'scissors') {
                 computerScore += 1;
-                console.log(`You lose. Scissors beats rock. The score is ${userScore} vs ${computerScore}`);
-                return;
-            } else if (computerSelection === 'paper' && userValue === 'scissors') {
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nYou lose. Scissors beats rock. The score is ${userScore} vs ${computerScore}`;
+            } else if (computerSelection === 'paper' && playerSelection === 'scissors') {
                 userScore += 1;
-                console.log(`You win! Scissors beats paper! The score is ${userScore} vs ${computerScore}`);
-                return;
-            } else if (computerSelection === 'scissors' && userValue === 'paper') {
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nYou win! Scissors beats paper! The score is ${userScore} vs ${computerScore}`;
+            } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
                 computerScore += 1;
-                console.log(`You lose. Scissors beats paper The score is ${userScore} vs ${computerScore}`);
-                return;
+                return div.innerText = `${playerSelection} vs. ${computerSelection}\nYou lose. Scissors beats paper The score is ${userScore} vs ${computerScore}`;
             } else {
-                console.log('Uh oh, something went wrong! Try again.');
-                return;
+                return 'Uh oh, something went wrong! Try again.';
             };
 
         }
-
-
-        // use an if statement to compare the values and return who the winner is
-        // write a function called game() to keep score for five rounds and return the winner/loser at the end
-
         
 
     </script>
